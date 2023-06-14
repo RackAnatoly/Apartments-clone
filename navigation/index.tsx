@@ -13,6 +13,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { SavedScreen } from "../screens/SavedScreen";
 import { SearchScreen } from "../screens/SearchScreen";
 import { AccountScreen } from "../screens/AccountScreen";
+import { theme } from "../theme";
 
 export default function Navigation({
   colorScheme
@@ -52,7 +53,7 @@ function BottomTabNavigator() {
     <BottomTab.Navigator
       initialRouteName="Saved"
       screenOptions={{
-        tabBarActiveTintColor: "black"
+        tabBarActiveTintColor: theme["color-primary-500"]
       }}
     >
       <BottomTab.Screen
