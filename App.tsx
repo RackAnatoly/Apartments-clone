@@ -1,16 +1,18 @@
 import * as React from "react";
-import { Text, View } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import Navigation from "./navigation";
 import useColorScheme from "./hooks/useColorScheme";
+import * as eva from "@eva-design/eva";
+import { ApplicationProvider, Layout, Text } from "@ui-kitten/components";
+import { theme } from "./theme";
 
 export default function App() {
   const colorScheme = useColorScheme();
   return (
-    // <SafeAreaProvider>
-    <Navigation colorScheme={colorScheme} />
-    // </SafeAreaProvider>
+    <ApplicationProvider {...eva} theme={theme}>
+      <SafeAreaProvider>
+        <Navigation colorScheme={colorScheme} />
+      </SafeAreaProvider>
+    </ApplicationProvider>
   );
 }
