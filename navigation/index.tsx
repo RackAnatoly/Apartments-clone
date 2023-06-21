@@ -51,7 +51,7 @@ const BottomTab = createBottomTabNavigator<RootTabParamList>();
 function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
-      initialRouteName="Saved"
+      initialRouteName="Search"
       screenOptions={{
         tabBarActiveTintColor: theme["color-primary-500"]
       }}
