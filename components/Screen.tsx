@@ -15,6 +15,7 @@ export const Screen = ({
 }) => {
   return (
     <SafeAreaView style={[styles.container, style]}>
+      <StatusBar barStyle={"dark-content"} />
       {children}
       <StatusBar barStyle={"dark-content"} />
     </SafeAreaView>
