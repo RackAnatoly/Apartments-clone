@@ -17,10 +17,14 @@ import { HeaderFilterButtons } from "./HeaderFilterButtons";
 import { HeaderInput } from "./HeaderInput";
 import { HeaderLogistics } from "./HeaderLogistics";
 
-export const AnimatedListHeaer = ({
-  scrollAnimation
+export const AnimatedListHeader = ({
+  scrollAnimation,
+  setMapShown,
+  mapShown
 }: {
   scrollAnimation: Animated.Value;
+  setMapShown: (bool: boolean) => void;
+  mapShown: boolean;
 }) => {
   const [offsetAnimationAnimation] = useState(new Animated.Value(0));
   const [clampedScroll, setClampeedScroll] = useState(
@@ -76,7 +80,7 @@ export const AnimatedListHeaer = ({
         <HeaderFilterButtons />
       </View>
       <Divider style={styles.divider} />
-      <HeaderLogistics />
+      <HeaderLogistics setMapShown={setMapShown} mapShown={mapShown} />
     </Animated.View>
   );
 };

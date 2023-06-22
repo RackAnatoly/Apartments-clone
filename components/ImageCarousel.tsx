@@ -52,7 +52,7 @@ const ImageCarousel = ({ images }: { images: string[] }) => {
           <Image
             source={{ uri: item }}
             style={{
-              height: 225,
+              height: 200,
               width: WIDTH,
               borderRadius: 5
             }}
