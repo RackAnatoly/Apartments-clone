@@ -14,6 +14,7 @@ import { SavedScreen } from "../screens/SavedScreen";
 import { SearchScreen } from "../screens/SearchScreen";
 import { AccountScreen } from "../screens/AccountScreen";
 import { theme } from "../theme";
+import { FindLocationsScreen } from "../screens/FindLocationsScreen";
 
 export default function Navigation({
   colorScheme
@@ -36,12 +37,13 @@ export function RootNavigator() {
         component={BottomTabNavigator}
         options={{ headerShown: false }}
       />
-      <Stack.Group screenOptions={{ presentation: "modal" }}></Stack.Group>
-      {/* <Stack.Screen
-        name="Root"
-        component={BottomTabNavigator}
-        options={{ headerShown: false }}
-      /> */}
+      <Stack.Group screenOptions={{ presentation: "modal" }}>
+        <Stack.Screen
+          name="FindLocations"
+          component={FindLocationsScreen}
+          options={{ headerShown: false }}
+        />
+      </Stack.Group>
     </Stack.Navigator>
   );
 }
