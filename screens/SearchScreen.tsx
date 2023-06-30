@@ -4,19 +4,35 @@ import { Screen } from "../components/Screen";
 import { Button, Text } from "@ui-kitten/components";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { theme } from "../theme";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Card } from "../components/Card";
 import { HEADERHEIGHT } from "../constants";
 import { AnimatedListHeader } from "../components/AnimatedListHeaer";
 import MapView from "react-native-maps";
 import { properties } from "../data/properties";
 import { Map } from "../components/Map";
+import { SearchScreenParams } from "../types";
 const LISTMARGIN = 10;
 
-export const SearchScreen = () => {
+export const SearchScreen = ({
+  route
+}: {
+  route: { params: SearchScreenParams };
+}) => {
   const [scrollAnimation] = useState(new Animated.Value(0));
   const [mapShown, setMapShown] = useState<boolean>(false);
+  const mapRef = useRef<MapView | null>(null);
 
+  useEffect(() => {
+    if (route.params) {
+      mapRef?.current?.animateCamera({
+        center: {
+          latitude: Number(route.params.lat),
+          longitude: Number(route.params.lon)
+        }
+      });
+    }
+  }, [route]);
   return (
     <Screen>
       <AnimatedListHeader
@@ -25,7 +41,20 @@ export const SearchScreen = () => {
         mapShown={mapShown}
       />
       {mapShown ? (
-        <Map properties={properties} />
+        <Map
+          properties={properties}
+          mapRef={mapRef}
+          initialRegion={
+            route.params
+              ? {
+                  latitude: Number(route.params.lat),
+                  longitude: Number(route.params.lon),
+                  latitudeDelta: 0.4,
+                  longitudeDelta: 0.4
+                }
+              : undefined
+          }
+        />
       ) : (
         <Animated.FlatList
           onScroll={Animated.event(
