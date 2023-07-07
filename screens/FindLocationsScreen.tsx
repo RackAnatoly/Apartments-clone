@@ -5,7 +5,8 @@ import {
   StyleSheet,
   View,
   FlatList,
-  TouchableOpacity
+  TouchableOpacity,
+  ScrollView
 } from "react-native";
 import { Screen } from "../components/Screen";
 import { ModalHeader } from "../components/ModalHeader";
@@ -43,6 +44,14 @@ export const FindLocationsScreen = () => {
         boundingBox: location.boundingbox
       }
     });
+  };
+  const SuggestedTest = ({ locationItem }: { locationItem: Location }) => {
+    const Location = getFormattedLocationText(locationItem);
+    return (
+      <Row style={styles.suggestionContainer}>
+        <Text>{location}</Text>
+      </Row>
+    );
   };
   const getInput = () => {
     if (Platform.OS === "ios")
@@ -116,7 +125,9 @@ export const FindLocationsScreen = () => {
               </TouchableOpacity>
             )}
           />
-        ) : null}
+        ) : (
+          <ScrollView bounces={false}></ScrollView>
+        )}
       </View>
     </Screen>
   );

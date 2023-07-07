@@ -39,6 +39,7 @@ export const SearchScreen = ({
         scrollAnimation={scrollAnimation}
         setMapShown={setMapShown}
         mapShown={mapShown}
+        location={route.params ? route.params.location : "Find a Location"}
       />
       {mapShown ? (
         <Map
